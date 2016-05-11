@@ -1,9 +1,9 @@
 
 var cartoons = ['Spongebob Squarepants', 'Adventure Time','Futurama', 'South Park', 'Cow and Chicken', 'Peter Pan'];
 
-function displayCartoonInfo(){
+// function displayCartoonInfo(){
 
-$('button').on('click', function() {
+$('button').on('click', function(displayCartoonInfo) {
 	$('#cartoonButton').removeClass('active');
     $(this).addClass('active');
     var cartoons = $(this).data('cartoons');
@@ -15,6 +15,7 @@ $('button').on('click', function() {
 			cartoonImage.attr('src', imageUrl);
             cartoonImage.attr('alt', 'cartoons image');
               $('#cartoonsView').prepend(cartoonImage);
+
                   // $.ajax({url: queryURL, method: 'GET'})
      
          var results = response.data;
@@ -36,7 +37,7 @@ $('button').on('click', function() {
     })
 });
 
-};
+// };
 
  $('.cartoonsImage').on('click', function(){
 
@@ -68,7 +69,7 @@ $('#addCartoon').on('click', function(){
 		return false;
 	});
 
-$(document).on('click', '.cartoon', displayCartoonInfo);
+$(document).on('click', '.cartoon', displayCartoonInfo());
 	renderButtons();
 
 // 
