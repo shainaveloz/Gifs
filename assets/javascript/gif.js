@@ -1,19 +1,5 @@
 
 var cartoons = ['Spongebob Squarepants', 'Adventure Time','Futurama', 'South Park', 'Cow and Chicken', 'Peter Pan', 'Looney Tunes', 'King of the Hill', 'The Little Mermaid', 'The Flintstones', 'Winnie the Pooh'];
-// var anime = 
-// var cartoonButton = $('<button>');
-
-// function makeButtons(){
-// 		var movie = $('#cartoonsView').val();
-// 		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + cartoons + "&api_key=dc6zaTOxFJmzC&limit=10";
-
-// 		$.ajax({url: queryURL, method: 'GET'})
-// 			.done(function(response){
-// 				$('#cartoonsView').text(JSON.stringify(response));
-					
-// 				})
-// 				return false;
-// 	}
 
 $('button').on('click', function() {
 	$('#cartoonButton').removeClass('active');
@@ -23,10 +9,10 @@ $('button').on('click', function() {
 	$.ajax({url: queryURL, method: 'GET'})
 		.done(function(response) {
 			var imageUrl = response.data.image_original_url;
-			var cartoonImage = $("<img>");
-			cartoonImage.attr('src', imageUrl);
-            cartoonImage.attr('alt', 'cartoons image');
-              $('#cartoonsView').prepend(cartoonImage);
+			var cartoonsImage = $("<img>");
+			cartoonsImage.attr('src', imageUrl);
+            cartoonsImage.attr('alt', 'cartoons image');
+              $('#cartoonsView').prepend(cartoonsImage);
                   $.ajax({url: queryURL, method: 'GET'})
      
          var results = response.data;
@@ -38,10 +24,10 @@ $('button').on('click', function() {
               var gifDiv = $('<div class="item">')
              var rating = results[i].rating;
              var p = $('<p>').text( "Rating: " + rating);
-             var cartoonImage = $('<img>');
-             cartoonImage.attr('src', results[i].images.fixed_height.url);
+             var cartoonsImage = $('<img>');
+             cartoonsImage.attr('src', results[i].images.fixed_height.url);
              gifDiv.append(p)
-             gifDiv.append(cartoonImage)
+             gifDiv.append(cartoonsImage)
              $('#cartoonsView').prepend(gifDiv);               
             }
          
@@ -50,7 +36,7 @@ $('button').on('click', function() {
         });
 });
 
- $('.cartoonImage').on('click', function(){
+ $('.cartoonsImage').on('click', function(){
 
  	var state = $(this).attr('data-state'); 
  	if ( state == 'still'){
@@ -62,6 +48,21 @@ $('button').on('click', function() {
             }
         });
 
-function runQuery(){
+function renderButtons(){ 
+	$('#cartoonsView').empty();
+	for (var i = 0; i < cartoons.length; i++){
+		var a = $('<button>')
+		 a.addClass('cartoons');
+		 a.attr('data-name', cartoons[i]);
+		 a.text(cartoons[i]); 
+		 $('#CartoonsView').append(a);
+		 }
+	}
+	}
 
-}
+$('#addCartoon').on('click', function(){
+	var cartoons = $('#cartoon-input').val().trim();
+	cartoons.push(movie);
+	renderButtons();
+		return false;
+	})
